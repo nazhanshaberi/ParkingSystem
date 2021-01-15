@@ -86,13 +86,13 @@ def num5():
   GPIO.output(25, GPIO.HIGH) # LED f pin 
   GPIO.output(8, GPIO.HIGH)  # LED g pin
 
-print("Press CTRL+C to exit the simulation") # CTRL + C mean "Clear"
+print("Press CTRL+C to exit the simulation")  # since we are using except KeyboardInterupt, CTRL + C mean "Clear"
 try:
     num5()   
     num=5
     disp(num)
     while 1:
-      if GPIO.input(2)&GPIO.input(3): # sensor2 & sensor3 are not detected
+      if GPIO.input(2)&GPIO.input(3):       # sensor2 & sensor3 are not detected
         time.sleep(0.05)
       elif ~GPIO.input(2)& GPIO.input(3)&(num!=0):
         wiringpi.pwmWrite(13,75)
