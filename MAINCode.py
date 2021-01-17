@@ -8,7 +8,7 @@ wiringpi.pinMode(4,2)
 wiringpi.pwmSetMode(0)
 wiringpi.pwmSetClock(384)   #clock at 50kHz (20us tick)
 wiringpi.pwmSetRange(1000)  #range at 1000 ticks (20ms)
-wiringpi.pwmWrite(13,120)
+wiringpi.pwmWrite(4,120)
 GPIO.setup(14, GPIO.OUT) # LED a pin set as output
 GPIO.setup(15, GPIO.OUT) # LED b pin set as output
 GPIO.setup(18, GPIO.OUT) # LED c pin set as output
