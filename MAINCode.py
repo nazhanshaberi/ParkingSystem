@@ -4,10 +4,10 @@ import time
 
 wiringpi.wiringPiSetupGpio()
 GPIO.setmode(GPIO.BCM) # Broadcom pin-numbering scheme
-wiringpi.pinMode(13,2)
+wiringpi.pinMode(4,2)
 wiringpi.pwmSetMode(0)
-wiringpi.pwmSetClock(384)
-wiringpi.pwmSetRange(1000)
+wiringpi.pwmSetClock(384)   #clock at 50kHz (20us tick)
+wiringpi.pwmSetRange(1000)  #range at 1000 ticks (20ms)
 wiringpi.pwmWrite(13,120)
 GPIO.setup(14, GPIO.OUT) # LED a pin set as output
 GPIO.setup(15, GPIO.OUT) # LED b pin set as output
@@ -16,9 +16,9 @@ GPIO.setup(23, GPIO.OUT) # LED d pin set as output
 GPIO.setup(24, GPIO.OUT) # LED e pin set as output
 GPIO.setup(25, GPIO.OUT)# LED f pin set as output
 GPIO.setup(8, GPIO.OUT) # LED g pin set as output
-GPIO.setup(2, GPIO.IN)# set GPIO 2 as an input for proximity sensor 1. 
-GPIO.setup(3, GPIO.IN)# set GPIO 3 as an input for proximity sensor 2. 
-GPIO.setup(4, GPIO.OUT)# set GPIO 4 as an output for servo. 
+GPIO.setup(2, GPIO.IN)  # set GPIO 2 as an input for proximity sensor 1. 
+GPIO.setup(3, GPIO.IN)  # set GPIO 3 as an input for proximity sensor 2. 
+GPIO.setup(4, GPIO.OUT) # set GPIO 4 as an output for servo. 
 
 
 def disp(int):
@@ -92,22 +92,22 @@ try:
     num=5
     disp(num)
     while 1:
-      if GPIO.input(2)&GPIO.input(3):       # sensor2 & sensor3 are not detected
+      if GPIO.input(2)&GPIO.input(3):       # sensor 1 & sensor 2 are not detected
         time.sleep(0.05)
-      elif ~GPIO.input(2)& GPIO.input(3)&(num!=0):
-        wiringpi.pwmWrite(13,75)
-        num=num-1
-        disp(num)
-        while GPIO.input(3):
-          time.sleep(0.05)
-        wiringpi.pwmWrite(13,120)
-        time.sleep(2) 
-      elif ~GPIO.input(3)& GPIO.input(2)&(num!=5):
+      elif ~GPIO.input(2)& GPIO.input(3)&(num!=0):    #sensor 2 detect Car enter 
+        wiringpi.pwmWrite(4,75)             # 4 ouput for servo; 75 = counterclockwise (90degree) Gate open     
+        num=num-1                           # number -1   
+        disp(num)     
+        while GPIO.input(3):                # sensor 2 detect car 
+          time.sleep(0.05)                   
+        wiringpi.pwmWrite(4,120)            # 4 ouput for servo; 120 =(90degree) clockwise  Gate close
+        time.sleep(2)                       
+      elif ~GPIO.input(3)& GPIO.input(2)&(num!=5): # situasi bila kereta nak keluar. sama macam kat atas
         wiringpi.pwmWrite(13,75)
         num=num+1
         disp(num)
         while GPIO.input(2):
-          time.sleep(0.05)
+          time.sleep(0.05)                 
         wiringpi.pwmWrite(13,120)
         time.sleep(2)
         
