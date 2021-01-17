@@ -103,12 +103,12 @@ try:
         wiringpi.pwmWrite(4,120)            # 4 ouput for servo; 120 =(90degree) clockwise  Gate close
         time.sleep(2)                       
       elif ~GPIO.input(3)& GPIO.input(2)&(num!=5): # situasi bila kereta nak keluar. sama macam kat atas
-        wiringpi.pwmWrite(13,75)
+        wiringpi.pwmWrite(4,75)
         num=num+1
         disp(num)
         while GPIO.input(2):
           time.sleep(0.05)                 
-        wiringpi.pwmWrite(13,120)
+        wiringpi.pwmWrite(4,120)
         time.sleep(2)
         
 except KeyboardInterrupt: # If CTRL+C is pressed, exit cleanly:
