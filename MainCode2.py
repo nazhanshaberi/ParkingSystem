@@ -10,7 +10,7 @@ wiringpi.pinMode(4,2)
 wiringpi.pwmSetMode(0)
 wiringpi.pwmSetClock(384)   
 wiringpi.pwmSetRange(1000)  
-wiringpi.pwmWrite(13,120)
+wiringpi.pwmWrite(4,120)
 GPIO.setup(14, GPIO.OUT) 
 GPIO.setup(15, GPIO.OUT) 
 GPIO.setup(18, GPIO.OUT)
@@ -104,12 +104,12 @@ try:
         wiringpi.pwmWrite(4,120)           
         time.sleep(2)                       
       elif ~GPIO.input(3)& GPIO.input(2)&(num!=5): 
-        wiringpi.pwmWrite(13,75)
+        wiringpi.pwmWrite(4,75)
         num=num+1
         disp(num)
         while GPIO.input(2):
           time.sleep(0.05)                 
-        wiringpi.pwmWrite(13,120)
+        wiringpi.pwmWrite(4,120)
         time.sleep(2)
         
 except KeyboardInterrupt: 
