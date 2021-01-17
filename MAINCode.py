@@ -94,7 +94,7 @@ try:
     while 1:
       if GPIO.input(2)&GPIO.input(3):       # sensor 1 & sensor 2 are not detected
         time.sleep(0.05)
-      elif ~GPIO.input(2)& GPIO.input(3)&(num!=0):    #sensor 2 detect Car enter 
+      elif ~GPIO.input(2)& GPIO.input(3)&(num!=0):    #sensor 1 detect Car enter 
         wiringpi.pwmWrite(4,75)             # 4 ouput for servo; 75 = counterclockwise (90degree) Gate open     
         num=num-1                           # number -1   
         disp(num)     
