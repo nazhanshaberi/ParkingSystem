@@ -8,4 +8,4 @@ If you are using Raspberry Pi, please consider this first!
 
 
 Simulation Video:
-[![Simulation Video](https://i.imgur.com/gguNLO2.jpg)](https://youtu.be/ag3LEOfiki8?t=127 "Simulation Video")
+[![Simulation Video](https://i.imgur.com/cTf6CoT.jpg)](https://youtu.be/ag3LEOfiki8?t=127 "Simulation Video")
